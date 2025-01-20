@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Đăng ký thành viên</title>
+    <script type="text/javascript">
+        function xulyDangky() {
+            const ten = document.getElementById("tenkh").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const gioitinh = document.querySelector("input[name='gender']:checked");
+            const namSinh = document.getElementById("year").value;
+            const soThich = document.querySelectorAll("input[type='checkbox']:checked");
+            const mauSac = document.querySelector("input[name='color']:checked");
+
+            if (ten === "") {
+                alert("Tên không được để trống!");
+                document.getElementById("tenkh").focus();
+                return;
+            }
+
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!emailPattern.test(email)) {
+                alert("Email không hợp lệ!");
+                document.getElementById("email").focus();
+                return;
+            }
+
+            const genderValue = gioitinh ? gioitinh.value : "Không chọn";
+            const hobbies = Array.from(soThich).map((hobby) => hobby.value).join(", ") || "Không có";
+            const favoriteColor = mauSac ? mauSac.value : "Không chọn";
+
+            const tbody = document.getElementById("tbody-dangky");
+            const newRow = tbody.insertRow();
+            newRow.innerHTML = `
+                <td>${ten}</td>
+                <td>${email}</td>
+                <td>${genderValue}</td>
+                <td>${namSinh}</td>
+                <td>${hobbies}</td>
+                <td>${favoriteColor}</td>
+            `;
+
+            // Add mouseover and mouseout events to the new row
+            newRow.addEventListener("mouseover", () => {
+                newRow.style.backgroundColor = "yellow";
+            });
+            newRow.addEventListener("mouseout", () => {
+                newRow.style.backgroundColor = "white";
+            });
+
+            document.getElementById("registrationForm").reset();
+            document.getElementById("tenkh").focus();
+        }
+
+        function resetTable() {
+            const tbody = document.getElementById("tbody-dangky");
+            tbody.innerHTML = ""; // Clear all rows in the table
+            document.getElementById("tenkh").focus(); // Return focus to "Tên" field
+        }
+
+        function populateDays() {
+            const daySelect = document.getElementById('day');
+            for (let day = 1; day <= 31; day++) {
+                const option = document.createElement('option');
+                option.value = day;
+                option.textContent = day;
+                daySelect.appendChild(option);
+            }
+        }
+
+        function populateMonths() {
+            const monthSelect = document.getElementById('month');
+            for (let month = 1; month <= 12; month++) {
+                const option = document.createElement('option');
+                option.value = month;
+                option.textContent = `${month}`;
+                monthSelect.appendChild(option);
+            }
+        }
+
+        function populateYears() {
+            const yearSelect = document.getElementById('year');
+            const currentYear = new Date().getFullYear();
+            for (let year = currentYear; year >= 1900; year--) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearSelect.appendChild(option);
+            }
+        }
+
+        window.onload = function () {
+            populateDays();
+            populateMonths();
+            populateYears();
+        };
+    </script>
+</head>
+<body>
+    <h1>Đăng ký thành viên</h1>
+    <hr/>
+    <form id="registrationForm">
+        Tên(*) <input type="text" id="tenkh" name="tenkh"> <br/> <br/>
+        Email(*) <input type="text" id="email"> <br/> <br/>
+
+        Ngày sinh (*):
+        <label for="day">Ngày:</label>
+        <select id="day" name="day"></select>
+        <label for="month">Tháng:</label>
+        <select id="month" name="month"></select>
+        <label for="year">Năm:</label>
+        <select id="year" name="year"></select>
+        <br/> <br/>
+
+        Giới tính(*): 
+        <input type="radio" name="gender" value="female" id="female">
+        <label for="female">Nữ</label>
+        <input type="radio" name="gender" value="male" id="male">
+        <label for="male">Nam</label>
+        <br/> <br/>
+
+        Sở thích của bạn: <br/>
+        <input type="checkbox" value="Mua sắm" id="shop"><label for="shop">Mua sắm</label><br/>
+        <input type="checkbox" value="Du lịch" id="travel"><label for="travel">Du lịch</label><br/>
+        <input type="checkbox" value="Tán gẫu" id="chat"><label for="chat">Tán gẫu</label><br/>
+        <input type="checkbox" value="Đọc sách" id="read"><label for="read">Đọc sách</label><br/>
+        <input type="checkbox" value="Nghe nhạc" id="music"><label for="music">Nghe nhạc</label><br/>
+
+        Màu sắc yêu thích của bạn:<br/>
+        <input type="radio" name="color" value="blue" id="blue"><label for="blue" style="background-color:blue">Màu xanh da trời</label><br/>
+        <input type="radio" name="color" value="red" id="red"><label for="red" style="background-color:red">Màu đỏ</label><br/>
+        <input type="radio" name="color" value="yellow" id="yellow"><label for="yellow" style="background-color:yellow">Màu vàng</label><br/>
+        <input type="radio" name="color" value="green" id="green"><label for="green" style="background-color:green">Màu xanh lá cây</label><br/>
+        <input type="radio" name="color" value="pink" id="pink"><label for="pink" style="background-color:pink">Màu hồng</label>
+        <br/> <br/>
+
+        <button type="button" onclick="xulyDangky()">Đăng ký</button>
+        <button type="button" onclick="resetTable()">Tiếp</button>
+    </form>
+    <br/> <br/>
+    <table border="1">
+        <thead>
+            <tr style="background-color: blue; color: aliceblue;">
+                <th>Tên</th>
+                <th>Email</th>
+                <th>Giới tính</th>
+                <th>Năm sinh</th>
+                <th>Sở thích</th>
+                <th>Màu yêu thích</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-dangky"></tbody>
+    </table>
+</body>
+</html>

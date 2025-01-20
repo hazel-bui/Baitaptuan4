@@ -1,0 +1,124 @@
+<html>
+<head>
+    <title>Travel Expense Report</title>
+<style>
+    body {
+        background-color: rgb(206, 241, 251);
+        color: rgb(7, 0, 0);
+        font-family: Arial, sans-serif;
+    }
+    tr td input {
+        text-align: justify;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 5px;
+    }
+    tr td{
+       text-align: center
+    }   
+    .butt{
+        border: none;
+    }
+</style>
+<script>
+    function Thongbao()
+    {
+        alert("Thanks for joining with us")
+    }
+</script>
+</head>
+<body>
+<center>
+    <img src="hinh/DeLong.jpg" alt="Travel Image">
+</center>
+<h3>Travel Expense Report</h3>
+<hr style="border: 1px solid brown;">
+<form id="myform">
+    <p>1) First Name: <input type="text" style="width: 150px;"> Last Name: <input type="text" style="width: 150px;"></p>
+    <p>2) Social Security Number: <input type="text" style="width: 200px;"></p>
+    <p>3) Department: 
+        <select name="department">
+            <option value="accounting">Accounting</option>
+            <option value="hr">HR</option>
+            <option value="sales">Sales</option>
+        </select>
+    </p>
+    <p>4) Describe the purpose of your trip:<br/><br/>
+        <input type="text" style="width: 500px; height: 100px;">
+    </p>
+    <p>5) Itemize your travel expenses:</p>
+    <table border="1">
+        <tr>
+            <th width="20%">Date</th>
+            <th width="50%">Description</th>
+            <th width="20%">Category</th>
+            <th width="20%">Amount</th>
+        </tr>
+        <tr>
+            <td><input type="date" style="width: 100%;"></td>
+            <td><input type="text" style="width: 80%"></td>
+            <td>
+                <select name="category" style="width: 100%;">
+                    <option value="meal">Meal</option>
+                    <option value="transport">Transport</option>
+                    <option value="lodging">Lodging</option>
+                </select>
+            </td>
+            <td><input type="number" style="width: 100%;"></td>
+        </tr>
+        <tr>
+            <td><input type="date" style="width: 100%;"></td>
+            <td><input type="text" style="width: 80%;"></td>
+            <td>
+                <select name="category" style="width: 100%;">
+                    <option value="meal">Meal</option>
+                    <option value="transport">Transport</option>
+                    <option value="lodging">Lodging</option>
+                </select>
+            </td>
+            <td><input type="number" style="width: 100%;"></td>
+        </tr>
+        <tr>
+            <td><input type="date" style="width: 100%;"></td>
+            <td><input type="text" style="width: 80%;"></td>
+            <td>
+                <select name="category" style="width: 100%;">
+                    <option value="meal">Meal</option>
+                    <option value="transport">Transport</option>
+                    <option value="lodging">Lodging</option>
+                </select>
+            </td>
+            <td><input type="number" style="width: 100%;"></td>
+        </tr>
+        <tr>
+            <td><input type="date" style="width: 100%;"></td>
+            <td><input type="text" style="width: 80%;"></td>
+            <td>
+                <select name="category" style="width: 100%;">
+                    <option value="meal">Meal</option>
+                    <option value="transport">Transport</option>
+                    <option value="lodging">Lodging</option>
+                </select>
+            </td>
+            <td><input type="number" style="width: 100%;"></td>
+        </tr>
+
+    </table>
+<p>
+    6) Have you submitted your receipts?
+    <input type="radio" name="submit" value="yes" id="yes"> 
+    <label for="yes">Yes</label>
+    <input type="radio" name="submit" value="no" id="no"> 
+    <label for="no">No</label>
+</p>
+<div class="butt">
+    <input type="submit" value="Submit travel expenses" onclick="Thongbao()">
+    <input type="reset" value="Reset">
+    </div>
+</form>
+</body>
+</html>
